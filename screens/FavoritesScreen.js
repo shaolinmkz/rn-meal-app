@@ -9,6 +9,10 @@ const FavoritesScreen = () => {
   );
 }
 
+FavoritesScreen.navigationOptions = {
+  headerTitle: 'Your Favorites'
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
