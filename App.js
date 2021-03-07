@@ -1,11 +1,21 @@
-import React from 'react';
+import React from "react";
 import { useFonts } from "expo-font";
-import AppLoading from 'expo-app-loading';
-import { StyleSheet } from 'react-native';
-import { enableScreens } from 'react-native-screens';
-import MealsNavigator from './navigation/MealsNavigator';
+import AppLoading from "expo-app-loading";
+import { StyleSheet } from "react-native";
+import { enableScreens } from "react-native-screens";
+import MealsNavigator from "./navigation/MealsNavigator";
+import { createStore, combineReducers } from "redux";
+import { Provider } from "react-redux";
+
+import mealsReducer from "./store/reducers/meals";
 
 enableScreens();
+
+const rootReducer = combineReducers({
+  meals: mealsReducer,
+});
+
+const store = createStore(rootReducer);
 
 const App = () => {
   const [loaded] = useFonts({
@@ -18,16 +28,18 @@ const App = () => {
   }
 
   return (
-    <MealsNavigator />
+    <Provider store={store}>
+      <MealsNavigator />
+    </Provider>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 
