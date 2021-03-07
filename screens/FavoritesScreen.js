@@ -1,11 +1,12 @@
 import React from "react";
 import { StyleSheet, FlatList, View } from "react-native";
+import { useSelector } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import MealItem from "../components/MealItem";
 import CustomHeaderButton from "../components/CustomHeaderButton";
 
 const FavoritesScreen = ({ navigation }) => {
-  const { favoriteMeals } = useSelector((state) => state.meals);
+  const { favoriteMeals, meals } = useSelector((state) => state.meals);
 
   return (
     <View style={styles.container}>
@@ -19,7 +20,8 @@ const FavoritesScreen = ({ navigation }) => {
               navigation.navigate({
                 routeName: "MealDetail",
                 params: {
-                  meal: displayMeals.find(({ id }) => id === item.id),
+                  meal: meals.find(({ id }) => id === item.id),
+                  favoriteMeals: favoriteMeals.find(({ id }) => id === item.id),
                 },
               });
             }}

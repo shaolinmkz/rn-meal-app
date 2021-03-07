@@ -5,7 +5,7 @@ import { CATEGORIES } from "../data/dummy-data";
 import MealItem from "../components/MealItem";
 
 const CategoryMealScreen = ({ navigation }) => {
-  const { filteredMeals } = useSelector((state) => state.meals);
+  const { filteredMeals, favoriteMeals } = useSelector((state) => state.meals);
 
   const catId = navigation.getParam("categoryId");
 
@@ -28,6 +28,7 @@ const CategoryMealScreen = ({ navigation }) => {
                 routeName: "MealDetail",
                 params: {
                   meal: displayMeals.find(({ id }) => id === item.id),
+                  favoriteMeals: favoriteMeals.find(({ id }) => id === item.id),
                 },
               });
             }}
