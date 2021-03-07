@@ -1,14 +1,17 @@
 import React from "react";
 import { StyleSheet, View, FlatList } from "react-native";
-import { CATEGORIES, MEALS } from "../data/dummy-data";
-import MealItem from '../components/MealItem';
+import { useSelector } from "react-redux";
+import { CATEGORIES } from "../data/dummy-data";
+import MealItem from "../components/MealItem";
 
 const CategoryMealScreen = ({ navigation }) => {
+  const { filteredMeals } = useSelector((state) => state.meals);
+
   const catId = navigation.getParam("categoryId");
 
   const selectedCat = CATEGORIES.find(({ id }) => id === catId);
 
-  const displayMeals = MEALS.filter(({ categoryIds }) =>
+  const displayMeals = filteredMeals.filter(({ categoryIds }) =>
     categoryIds.includes(selectedCat.id)
   );
 
@@ -18,13 +21,19 @@ const CategoryMealScreen = ({ navigation }) => {
         data={displayMeals}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <MealItem item={item} onSelectMeal={() => {
-            navigation.navigate({ routeName: "MealDetail", params: {
-              meal: displayMeals.find(({ id }) => id === item.id)
-            } })
-          }} />
+          <MealItem
+            item={item}
+            onSelectMeal={() => {
+              navigation.navigate({
+                routeName: "MealDetail",
+                params: {
+                  meal: displayMeals.find(({ id }) => id === item.id),
+                },
+              });
+            }}
+          />
         )}
-        style={{ width: '100%' }}
+        style={{ width: "100%" }}
       />
     </View>
   );
@@ -43,7 +52,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
   },
 });
 

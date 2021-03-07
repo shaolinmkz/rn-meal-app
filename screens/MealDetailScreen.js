@@ -17,12 +17,16 @@ const MealDetailScreen = ({ navigation }) => {
 
       <Text style={styles.title}>Ingredients</Text>
       {meal.ingredients.map((ingredient) => (
-        <Text key={ingredient} style={styles.list}>{ingredient}</Text>
+        <Text key={ingredient} style={styles.list}>
+          {ingredient}
+        </Text>
       ))}
 
       <Text style={styles.title}>Steps</Text>
       {meal.steps.map((step) => (
-        <Text key={step} style={styles.list}>{step}</Text>
+        <Text key={step} style={styles.list}>
+          {step}
+        </Text>
       ))}
     </ScrollView>
   );
@@ -49,10 +53,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     padding: 10,
-    borderBottomColor: 'rgba(0, 0, 0, 0.1)',
+    borderBottomColor: "rgba(0, 0, 0, 0.1)",
     borderBottomWidth: 1,
     marginBottom: 20,
-    shadowColor: 'rgba(0, 0, 0, 0.5)',
+    shadowColor: "rgba(0, 0, 0, 0.5)",
     shadowOffset: {
       width: 0,
       height: 5,
@@ -68,11 +72,11 @@ const styles = StyleSheet.create({
   list: {
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: 'rgba(0, 0, 0, 0.2)',
+    borderColor: "rgba(0, 0, 0, 0.2)",
     padding: 10,
     marginVertical: 10,
     marginHorizontal: 20,
-  }
+  },
 });
 
 export default MealDetailScreen;
