@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, FlatList } from "react-native";
+import { StyleSheet, View, FlatList, Text } from "react-native";
 import { useSelector } from "react-redux";
 import { CATEGORIES } from "../data/dummy-data";
 import MealItem from "../components/MealItem";
@@ -15,7 +15,7 @@ const CategoryMealScreen = ({ navigation }) => {
     categoryIds.includes(selectedCat.id)
   );
 
-  return (
+  return displayMeals.length ? (
     <View style={styles.container}>
       <FlatList
         data={displayMeals}
@@ -36,6 +36,10 @@ const CategoryMealScreen = ({ navigation }) => {
         )}
         style={{ width: "100%" }}
       />
+    </View>
+  ) : (
+    <View style={styles.container}>
+      <Text style={{ fontSize: 22 }}>No meals found</Text>
     </View>
   );
 };

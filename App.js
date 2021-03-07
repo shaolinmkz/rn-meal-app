@@ -3,7 +3,8 @@ import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import { StyleSheet } from "react-native";
 import { enableScreens } from "react-native-screens";
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
 import { Provider } from "react-redux";
 
 import MealsNavigator from "./navigation/MealsNavigator";
@@ -15,7 +16,7 @@ const rootReducer = combineReducers({
   meals: mealsReducer,
 });
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware()));
 
 const App = () => {
   const [loaded] = useFonts({
