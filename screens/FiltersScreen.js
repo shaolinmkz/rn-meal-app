@@ -68,23 +68,23 @@ const FiltersScreen = ({ navigation }) => {
   );
 };
 
-FiltersScreen.navigationOptions = (navData) => ({
+FiltersScreen.navigationOptions = ({ navigation }) => ({
   headerTitle: "Filters",
   headerLeft: () => (
     <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
       <Item
         title="Menu"
         iconName="ios-menu"
-        onPress={() => navData.navigation.toggleDrawer()}
+        onPress={() => navigation.toggleDrawer()}
       />
     </HeaderButtons>
   ),
-  headerRight: ({ navigation }) => (
+  headerRight: () => (
     <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
       <Item
         title="Save"
         iconName="ios-save"
-        onPress={() => navigation?.getParam?.("save")?.()}
+        onPress={navigation?.getParam?.("save")}
       />
     </HeaderButtons>
   ),
