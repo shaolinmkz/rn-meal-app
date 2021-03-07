@@ -3,10 +3,10 @@ import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import { StyleSheet } from "react-native";
 import { enableScreens } from "react-native-screens";
-import MealsNavigator from "./navigation/MealsNavigator";
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 
+import MealsNavigator from "./navigation/MealsNavigator";
 import mealsReducer from "./store/reducers/meals";
 
 enableScreens();
