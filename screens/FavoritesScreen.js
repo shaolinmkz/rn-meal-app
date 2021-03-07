@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, FlatList, View } from "react-native";
+import { StyleSheet, FlatList, View, Text } from "react-native";
 import { useSelector } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import MealItem from "../components/MealItem";
@@ -8,7 +8,7 @@ import CustomHeaderButton from "../components/CustomHeaderButton";
 const FavoritesScreen = ({ navigation }) => {
   const { favoriteMeals, meals } = useSelector((state) => state.meals);
 
-  return (
+  return favoriteMeals.length ? (
     <View style={styles.container}>
       <FlatList
         data={favoriteMeals}
@@ -29,6 +29,10 @@ const FavoritesScreen = ({ navigation }) => {
         )}
         style={{ width: "100%" }}
       />
+    </View>
+  ) : (
+    <View style={styles.container}>
+      <Text style={{ fontSize: 22 }}>No favorites selected</Text>
     </View>
   );
 };
